@@ -32,7 +32,7 @@ class LinkedList {
   }
   getLast(obj = this.root, list) {
     if (list) {
-      list.push(obj);
+      list.push(obj.content);
     }
     return obj.next ? this.getLast(obj.next, list) : obj;
   }
@@ -53,7 +53,7 @@ class LinkedList {
   }
 }
 
-function linkedList(input) {
+function brokenKeyBoard(input) {
   let ll = new LinkedList();
   let where = null;
   input.split('').forEach((e, i) => {
@@ -71,12 +71,7 @@ function linkedList(input) {
       }
     }
   });
-  let str = '';
-  ll.getList().forEach((e) => {
-    str += e.content;
-  });
-  //console.log(str);
-  return str;
-}
 
-console.log(test(linkedList, inputs, expect));
+  return ll.getList().join('');
+}
+console.log(test(brokenKeyBoard, inputs, expect));
