@@ -1,5 +1,5 @@
+// UVa 11988
 import { test } from '../test';
-
 import { Node, LinkedList } from './classLinkedList';
 
 let inputs = [

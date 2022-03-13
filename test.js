@@ -8,5 +8,5 @@ export function test(fn, inputs, expect) {
   document.getElementById(
     'app'
   ).innerHTML = `<h2>function <i style="color:blue">${fn.name}</i> 's test has passed</h2>`;
-  return 'CORRECT!';
+  return fn.name + ' CORRECT!';
 }
