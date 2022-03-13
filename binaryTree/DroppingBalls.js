@@ -15,6 +15,8 @@ class Node {
   id = '';
   left = null;
   right = null;
+  open = true;
+  hasBall = false;
   constructor(id) {
     this.id = id;
   }
@@ -44,10 +46,28 @@ function createBinaryTree(total) {
 
 function DroppingBalls(arr) {
   let [depth, balls] = arr;
-  depth = 3;
-  balls = 2;
   let total = totalCounts(depth);
-  console.log(createBinaryTree(total));
+  let tree  = createBinaryTree(total)
+}
+
+function drop(node){
+  let leftStatus = node.open
+  node.open = !node.open
+  if(node.left==null && node.right == null){
+    //land
+    node.hasBall = true
+    return node.id
+  }else if(node.left.hasBall && node.right.hasBall){
+    // land
+    node.hasBall = true
+    return node.id
+  }else if(leftStatus && !node.left.hasBall) {
+    //go leftn
+    drop(node.left)
+  }else if(leftStatus && ){
+    //go right
+    drop(node.right)
+  }
 }
 
 console.log(test(DroppingBalls, inputs, expect));
