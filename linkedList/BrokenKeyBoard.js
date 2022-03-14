@@ -14,7 +14,7 @@ let expect = [
   'fecldfkjsdlfaskfleaklajfkljjasdfjlasd',
 ];
 
-function brokenKeyBoard(input) {
+function BrokenKeyBoard(input) {
   let ll = new LinkedList();
   let where = null;
   input.split('').forEach((e, i) => {
@@ -35,4 +35,4 @@ function brokenKeyBoard(input) {
 
   return ll.getList().join('');
 }
-console.log(test(brokenKeyBoard, inputs, expect));
+console.log(test(BrokenKeyBoard, inputs, expect));
