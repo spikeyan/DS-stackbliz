@@ -44,6 +44,7 @@ function createBinaryTree(total) {
   }
 }
 
+//模拟小球下落
 function DroppingBalls(arr) {
   let [depth, balls] = arr;
   let total = totalCounts(depth);
@@ -53,6 +54,22 @@ function DroppingBalls(arr) {
     res = drop(tree);
   }
   return res;
+}
+
+//另一种解法，小球下落存在数学规律,直接模拟最后一球的路径
+function DroppingBalls1(arr){
+  let [depth, balls] = arr;
+  let k = 1
+  for(let i = 0 ;i<depth-1;i++){
+    if(balls%2){
+      k = k*2
+      balls = (balls+1)/2
+    }else{
+      k = k*2+1
+      balls = balls/2
+    }
+  }
+  return k
 }
 
 function drop(node) {
@@ -81,4 +98,4 @@ function drop(node) {
   }
 }
 
-console.log(test(DroppingBalls, inputs, expect));
+console.log(test(DroppingBalls1, inputs, expect));
