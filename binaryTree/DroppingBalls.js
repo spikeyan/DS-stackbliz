@@ -37,36 +37,47 @@ function createBinaryTree(total) {
   for (let item of nodes) {
     nodes.push((item.left = new Node(i)));
     i++;
-    if (i == total) return root;
+    if (i > total) return root;
     nodes.push((item.right = new Node(i)));
     i++;
-    if (i == total) return root;
+    if (i > total) return root;
   }
 }
 
 function DroppingBalls(arr) {
   let [depth, balls] = arr;
   let total = totalCounts(depth);
-  let tree  = createBinaryTree(total)
+  let tree = createBinaryTree(total);
+  let res = 0;
+  for (let i = 0; i < balls; i++) {
+    res = drop(tree);
+  }
+  return res;
 }
 
-function drop(node){
-  let leftStatus = node.open
-  node.open = !node.open
-  if(node.left==null && node.right == null){
+function drop(node) {
+  //node.open must be open at this situation
+  let left = node.left && !node.left.hasBall && node.left.open;
+  let right = node.right && !node.right.hasBall && node.right.open;
+
+  //if both not open
+  if (node.left?.open == false && node.right?.open == false) {
+    node.right.open = true;
+    left = true;
+  }
+  if (node.id != 1) {
+    node.open = false;
+  }
+  if (!left && !right) {
     //land
-    node.hasBall = true
-    return node.id
-  }else if(node.left.hasBall && node.right.hasBall){
-    // land
-    node.hasBall = true
-    return node.id
-  }else if(leftStatus && !node.left.hasBall) {
-    //go leftn
-    drop(node.left)
-  }else if(leftStatus && ){
-    //go right
-    drop(node.right)
+    node.hasBall = true;
+    return node.id;
+  } else if (left) {
+    //go left
+    return drop(node.left);
+  } else if (!left && right) {
+    // go right
+    return drop(node.right);
   }
 }
 
